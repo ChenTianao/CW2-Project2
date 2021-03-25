@@ -1,90 +1,74 @@
-#include<stdio.h>
+#include<stdio.h>>
 #include<stdlib.h>
 #include<string.h>
-#include"book_management.h"
-extern BookArray node;
-extern int kindbook;
-extern int line;
-//Add the book 
-int add_book(Book book){
-	system("cls");
-	int pause;
-	Book* newNode;
-	Book* last = (Book*)malloc(sizeof(Book));
-	last = node.array;
-	while(last->next!=NULL){
-		last = last->next;   //to circulate to the last node  
-	}	
-		newNode = (Book*)malloc(sizeof(Book));
-		newNode->title = (char*)malloc(sizeof(char)*100);
-		newNode->authors = (char*)malloc(sizeof(char)*100);
-		newNode->id = book.id;
-		newNode->title = book.title;
-		newNode->authors = book.authors;
-		newNode->year = book.year;
-		newNode->copies = book.copies;
-		newNode->brcopies = 0;
-		newNode->next = NULL;
-		last->next = newNode;
-		store_books("book.txt");
-		return 0;
-	}
+#include<conio.h> 
+struct book{	
+	unsigned int id; //Book ID
+	char *title; //book title
+	char *authors; //comma separated list of authors
+	unsigned int year; // year of publication
+	unsigned int copies; //number of copies the library has
+	int brcopies=0;  //0 stands for not be returned
+}; 
+struct Node{
+	struct book data; //数据域
+	struct Node* next; //指针域
+};
+//创建链表 
 
-void add(){
-	Book book;
-	int x;
-	int pause;
-	kindbook += 1;
-	line += 6;
-	book.id = kindbook;
-	system("cls");
-	fflush(stdin);
-	while(1){                 //the following lines while are test the input format
-		book.title = (char*)malloc(sizeof(char)*100);
-		printf("please enter the book title:\n");
-		pause = scanf("%[^\n]",book.title);
-		fflush(stdin);
-		if(pause != 1||strlen(book.title)>40)
-			printf("Please enter the right format\
-or exceeding the range!\n");
-		else
-			break;
-	}
-	while(1){
-		book.authors = (char*)malloc(sizeof(char)*100);
-		printf("Please enter the book author(s):\n");
-		pause = scanf("%[^\n]",book.authors);
-		fflush(stdin);
-		if(pause != 1||strlen(book.authors)>32)
-			printf("Please enter the right format \
-or exceeding the range!\n");
-		else
-			break;
-	}
-	while(1){
-		printf("Please enter the book year:\n");
-		pause = scanf("%d",&book.year);
-		fflush(stdin);
-		if(pause != 1)
-			printf("Please enter the right format!\n");
-		else
-			break;
-	}
-	while(1){
-		printf("Please enter the book copies:\n");
-		pause = scanf("%d",&book.copies);
-		fflush(stdin);
-		if(pause != 1)
-			printf("Please enter the right format!\n");
-		else
-			break;
-	}
-	book.brcopies = 0;
-	node.length += book.copies;
-	x = add_book(book);
-	if(x == 0)
-		printf("you have add a book successfully!\n");
-	getch();
-	system("cls");
+struct Node* createList(){
+	struct Node* headNode,*last;
+	headNode = (struct Node*)malloc(sizeof(struct Node)); //建立附加头结点 
+	last = headNode;    //last始终指向当前最后一个结点 
+	last->next = NULL;
+	return last;
 }
-
+//添加图书 
+void add(struct Node* lastx){
+	system("cls");
+	int pause;
+	struct Node* newNode;
+	struct Node* last;
+	last = lastx;
+	constant = lastx;    //固定指针位置 
+	while(last->next!=NULL){
+		last = last->next;   // 去循环到最后一个结点 
+	}
+	while(1){
+		newNode = (struct Node*)malloc(sizeof(struct Node));
+		data.title = (char*)malloc(sizeof(char));
+		data.authors = (char*)malloc(sizeof(char));
+		printf("Please enter book name,publish name,author and year");
+		scanf("%s%s%d",newNode->data.title,newNode->data.authors,&newNode->data.year);    //scanf不允许空格，这里可能需要更改 
+		while(1){
+			contant = constant->next;
+			if(strcmp(constant->data.title,newNode->data.title)==0)
+			{
+				if(contant==newNode)
+					{
+						newNode->data.id+=1;
+						newNode->data.copies=1;
+						break;
+					}
+				newNode->data.copies+=1;
+				break;
+				}
+			}
+		}
+		last->next = newNode;
+		last = newNode;
+		last->next=NULL;  //这是一个地方 
+		savebook(last);   //这里还有个保存图书文件的函数 
+		
+		printf("If you would like to continue,please enter any key,\
+				otherwise enter 'Esc'");
+		pause = getch();
+		if(pause == 27) //这里面还有用getch来判断是否继续 
+		{ 	
+			last->next=NULL; //这是另一个地方，准备退出了，然后明确最后一个结点 
+			break;
+		} 
+		else
+			continue;
+	}
+}
