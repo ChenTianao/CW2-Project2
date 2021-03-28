@@ -1,69 +1,80 @@
-void back(struct Node* lastx){
+#include"book_management.h"
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+extern BookArray node;
+void back(){
 	system("cls");
-	FILE *fp;
-	struct Node* constant;
-	struct Node* constant_1;
-	struct Node* previous;
-	struct Node* last;
-	constant=lastx;     //固定指针，为了返回 
-	constant_1=lastx;   //固定指针，为了返回+1 
-	last = lastx;
-	char namebr[100];
-	int pause;
+	Book* constant = (Book*)malloc(sizeof(Book));
+	Book* last;
+	constant=node.array; 
 	int allreturn= 1 ;
-	while(1){                                      // 判断书被还完了吗，如果被还完了，就返回主菜单 
-		constant_1 = constant_1->next;
-		if(constant_1->data.copies!=contant_1->data.brcopies) 
+	int id;
+	int x;
+	int pause;
+	
+	system("cls");
+	while(1){                                        //Check if the book has been all returned.
+		constant = constant->next;					//If so, return to the main menu.
+		if(constant->copies!=constant->brcopies) 
 		{
 			allreturn = 0;
 		}
-		if(allreturn==1)
+		if(constant->next==NULL)
+			break;
+	}
+		if(allreturn == 1)
 		{
 			printf("\t\tAll book have been returned.\n\n");
 			printf("\t\tPlease enter any key to return the main menu.");
 			getch();
-			coreshowmenu();
+			return;
 		}
-	}
-	printf("\t\tIf you would like to return the book by searching the book name,please enter the book name\n\n");
-	scanf("%s",namebr);
-	while(last->next=NULL)
-	{		
-		previous=last;
-		last = last->next;
-		if(strcmp(last->data.title,namebr)==0)
-			break;
-	}
-	if(last->next=NULL)
-		{
-			printf("\t\tPlease re-enter the book name, the system could not find it.\n\n");
-			getch();   //我觉得可以加一个
-			back(constant);
-		}
-	else	
-	{
-		if(last->data.copies>last->data.brcopies) 
-		{
-			last->data.brcopies+=1;
-			printf("\t\tYou have return it successfully!\n\n");
-			//这里加一个sava函数，每成功操作一次就重新创建文件 
-		}
-		else
+	while(1){
+		system("cls");
+		x = go_through();  //Display all books  
+		printf("Id must in the range,otherwise will return the previous menu!\n");
+		printf("If you would like to return the book by searching the book \
+id,please enter the book id:\n");
+		pause = scanf("%d",&id);
+		fflush(stdin);
+		if(pause != 1)		//format validation  
 			{
-				printf("\t\tThe book has been all returned,please check if you type the wrong book name.\n\n");
-				getch();   //我觉得可以加一个
-				back(constant);
+				printf("Please enter the right format of book id!\n");
+				return;
 			}
+		if(id>node.length||id <= 0)		//Unreasonable value
+		{
+			printf("The number exceed the range!\n");
+			printf("You have exited the borrow function successfully!\n");
+			getch();
+			return;
+		}
+		else{
+			last = node.array->next;
+			while(1)
+			{	
+				if(last->id == id)
+					break;
+				last = last->next;
+			}
+			if(last->brcopies<=0)		//this kind of book has been all returned  
+			{
+				printf("This kind of book has been all returned,\
+please check if you write the wrong id\n");
+				getch();
+				return;
+			}
+			else
+			{
+				last->brcopies -= 1;
+				printf("You have return a book successfully!\n");
+				store_books("book.txt");
+				getch();
+				break;
+			}
+		}
 	}
-	printf("\t\tIf you would like to continue to borrow the book,please enter the any key except 'Esc'\n\n");
-	printf("\t\tIf you would like to return the main menu,please enter the 'Esc'\n\n")
-	pause=getch();
-	if(pause==27){
-		fclose(fp);
-		coreshowmenu();
-	}
-	else
-		back(constant);
-	//借书分为两部分 一：循环找到图书然后删去它 二：储存它到一个借书文件中 
-	
 }
+	
+
