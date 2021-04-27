@@ -1,0 +1,37 @@
+# Project: coursework2
+# Makefile created by Dev-C++ 5.11
+
+CPP      = g++.exe
+CC       = gcc.exe
+WINDRES  = windres.exe
+OBJ      = 数据读入.o 邻接表.o 主函数.o 求最短路径.o
+LINKOBJ  = 数据读入.o 邻接表.o 主函数.o 求最短路径.o
+LIBS     = -L"D:/DEV/Dev-Cpp/MinGW64/lib" -L"D:/DEV/Dev-Cpp/MinGW64/x86_64-w64-mingw32/lib" -static-libgcc
+INCS     = -I"D:/DEV/Dev-Cpp/MinGW64/include" -I"D:/DEV/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"D:/DEV/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include"
+CXXINCS  = -I"D:/DEV/Dev-Cpp/MinGW64/include" -I"D:/DEV/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"D:/DEV/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include" -I"D:/DEV/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include/c++"
+BIN      = coursework2.exe
+CXXFLAGS = $(CXXINCS) 
+CFLAGS   = $(INCS) 
+RM       = rm.exe -f
+
+.PHONY: all all-before all-after clean clean-custom
+
+all: all-before $(BIN) all-after
+
+clean: clean-custom
+	${RM} $(OBJ) $(BIN)
+
+$(BIN): $(OBJ)
+	$(CC) $(LINKOBJ) -o $(BIN) $(LIBS)
+
+数据读入.o: 数据读入.c
+	$(CC) -c 数据读入.c -o 数据读入.o $(CFLAGS)
+
+邻接表.o: 邻接表.c
+	$(CC) -c 邻接表.c -o 邻接表.o $(CFLAGS)
+
+主函数.o: 主函数.c
+	$(CC) -c 主函数.c -o 主函数.o $(CFLAGS)
+
+求最短路径.o: 求最短路径.c
+	$(CC) -c 求最短路径.c -o 求最短路径.o $(CFLAGS)

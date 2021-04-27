@@ -8,14 +8,14 @@
 
 //顶点信息 
 typedef struct _Node{
-	int node_id;
+	long int node_id;
 	double latitude;
 	double longitude;
 }Node_details;
 
 //边表(关于后面的边点) 
 typedef struct _Link{
-	int linkid;
+	long int linkid;
 	Node_details nodelater;   //与该边连接的另一个点的信息 
 	double distance;
 	struct _Link* next;

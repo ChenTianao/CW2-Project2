@@ -26,7 +26,7 @@ void convert(){
 			if(sum_list.vertex[i].nodenext == NULL){
 				//起点的指针指向边表第一个 
 				if(Readnodearray[i].nodeid == Readlinkarray[j].node_id1){	
-					Link *startlink = (Link*)malloc(sizeof(Link));
+					Link *startlink = (Link*)malloc(sizeof(Link)*1000);
 					startlink->nodelater.node_id = Readlinkarray[j].node_id2;
 					startlink->distance = Readlinkarray[j].length;
 					startlink->linkid = Readlinkarray[j].linkid;
@@ -34,7 +34,7 @@ void convert(){
 					
 				}
 				else if(Readnodearray[i].nodeid == Readlinkarray[j].node_id2){
-					Link *startlink = (Link*)malloc(sizeof(Link));
+					Link *startlink = (Link*)malloc(sizeof(Link)*1000);
 					startlink->nodelater.node_id = Readlinkarray[j].node_id1;
 					startlink->distance = Readlinkarray[j].length;
 					startlink->linkid = Readlinkarray[j].linkid;
@@ -45,7 +45,7 @@ void convert(){
 			//边表中的链表(前插法)
 			else{
 				if(Readnodearray[i].nodeid == Readlinkarray[j].node_id1){	
-					Link *newlink = (Link*)malloc(sizeof(Link));
+					Link *newlink = (Link*)malloc(sizeof(Link)*1000);
 					newlink->nodelater.node_id = Readlinkarray[j].node_id2;
 					newlink->distance = Readlinkarray[j].length;
 					newlink->linkid = Readlinkarray[j].linkid;
@@ -54,7 +54,7 @@ void convert(){
 					sum_list.vertex[i].nodenext = newlink;
 				}
 				else if(Readnodearray[i].nodeid == Readlinkarray[j].node_id2){
-					Link *newlink = (Link*)malloc(sizeof(Link));
+					Link *newlink = (Link*)malloc(sizeof(Link)*1000);
 					newlink->nodelater.node_id = Readlinkarray[j].node_id1;
 					newlink->distance = Readlinkarray[j].length;
 					newlink->linkid = Readlinkarray[j].linkid;
@@ -62,10 +62,6 @@ void convert(){
 					newlink->next = sum_list.vertex[i].nodenext;
 					sum_list.vertex[i].nodenext = newlink;
 					
-					//test
-					printf("\n%ld",newlink->nodelater.node_id);
-					getch();
-					//test 
 				}
 			}
 		}
