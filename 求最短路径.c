@@ -10,7 +10,7 @@ extern struct adjacency_list sum_list;
 	Ensure ensure_list[NODE];
 	Unsure unsure_list[NODE-1];
 
-void Gragh(long int nodestart,long int nodeend){
+void Gragh(long int nodestart){
 	
 	int m = 0;
 	int i =0;
@@ -130,6 +130,13 @@ void Gragh(long int nodestart,long int nodeend){
 		if(s1==NODE-1)
 			break;                  //所有点都更新完成 
 	}
+	
+}
+
+void Output(long int nodeend){
+	
+	
+	
 	
 }
 

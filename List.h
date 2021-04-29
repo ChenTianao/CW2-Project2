@@ -1,7 +1,7 @@
 #ifndef LIST_GUARD__H
 #define LIST_GUARD__H
 
-//确定了最短路径的点的集合 
+//已确定最短路径的点的集合 
 	typedef struct gather_ensure{
 		long int ensure_nodeid;
 		double shortrst_distance;
