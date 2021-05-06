@@ -25,4 +25,5 @@ plot "F:\all.txt" using 1:2 with linespoints linecolor 3 linewidth 1 pointtype 1
 ## Explanation:
 >1.The "F:\all.txt"  is the absolute path to the file that stores all the point information.
 >2.The "F:\short.txt" is the absolute path of a file that stores information about the shortest path between two points.
+
 >If you would to visualize the data, copy the second line of code to GNUPLOT's command line.
