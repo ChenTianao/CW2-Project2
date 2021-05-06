@@ -1,10 +1,10 @@
 # Readme.md
 ## About test code:
-  1.Comment out line 20 of the main function, as shown in the figure below.
+>1.Comment out line 20 of the main function, as shown in the figure below.
 ```c
 //scanf("%ld%ld",&startnode_id,&endnode_id);  //C
 ```
-  2.Remove the double slash from lines 14,15,16,21,42,45,47 of the main function,, as shown in the figure below.
+>2.Remove the double slash from lines 14,15,16,21,42,45,47 of the main function,, as shown in the figure below.
 ```c
 test_code3();
 test_code4();
