@@ -4,8 +4,8 @@
 CPP      = g++.exe
 CC       = gcc.exe
 WINDRES  = windres.exe
-OBJ      = 数据读入.o 邻接表.o 主函数.o 求最短路径.o
-LINKOBJ  = 数据读入.o 邻接表.o 主函数.o 求最短路径.o
+OBJ      = Read_data.o adjacency_list.o main.o shortest_distance.o test_code.o
+LINKOBJ  = Read_data.o adjacency_list.o main.o shortest_distance.o test_code.o
 LIBS     = -L"D:/DEV/Dev-Cpp/MinGW64/lib" -L"D:/DEV/Dev-Cpp/MinGW64/x86_64-w64-mingw32/lib" -static-libgcc
 INCS     = -I"D:/DEV/Dev-Cpp/MinGW64/include" -I"D:/DEV/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"D:/DEV/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include"
 CXXINCS  = -I"D:/DEV/Dev-Cpp/MinGW64/include" -I"D:/DEV/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"D:/DEV/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include" -I"D:/DEV/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include/c++"
@@ -24,14 +24,17 @@ clean: clean-custom
 $(BIN): $(OBJ)
 	$(CC) $(LINKOBJ) -o $(BIN) $(LIBS)
 
-数据读入.o: 数据读入.c
-	$(CC) -c 数据读入.c -o 数据读入.o $(CFLAGS)
+Read_data.o: Read_data.c
+	$(CC) -c Read_data.c -o Read_data.o $(CFLAGS)
 
-邻接表.o: 邻接表.c
-	$(CC) -c 邻接表.c -o 邻接表.o $(CFLAGS)
+adjacency_list.o: adjacency_list.c
+	$(CC) -c adjacency_list.c -o adjacency_list.o $(CFLAGS)
 
-主函数.o: 主函数.c
-	$(CC) -c 主函数.c -o 主函数.o $(CFLAGS)
+main.o: main.c
+	$(CC) -c main.c -o main.o $(CFLAGS)
 
-求最短路径.o: 求最短路径.c
-	$(CC) -c 求最短路径.c -o 求最短路径.o $(CFLAGS)
+shortest_distance.o: shortest_distance.c
+	$(CC) -c shortest_distance.c -o shortest_distance.o $(CFLAGS)
+
+test_code.o: test_code.c
+	$(CC) -c test_code.c -o test_code.o $(CFLAGS)
